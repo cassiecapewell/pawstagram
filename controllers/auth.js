@@ -5,7 +5,9 @@ const User = require('../models/user')
  exports.getLogin = (req, res) => {
     if (req.user) {
       //KN - redirect to post.ejs 
-      return res.redirect('/post')
+      //JM - added console log to track if things are working and we want redirects to profile, not post
+      console.log('get Login')
+      return res.redirect('/profile')
     }
     res.render('login', {
       title: 'Login'
@@ -32,7 +34,7 @@ const User = require('../models/user')
       req.logIn(user, (err) => {
         if (err) { return next(err) }
         req.flash('success', { msg: 'Success! You are logged in.' })
-        res.redirect(req.session.returnTo || '/post')
+        res.redirect(req.session.returnTo || '/profile')
       })
     })(req, res, next)
   }
@@ -42,6 +44,7 @@ const User = require('../models/user')
     req.session.destroy((err) => {
       if (err) console.log('Error : Failed to destroy the session during logout.', err)
       req.user = null
+      console.log('loggedout')
       res.redirect('/')
     })
   }
@@ -49,14 +52,15 @@ const User = require('../models/user')
   exports.getSignUp = (req, res) => {
     if (req.user) {
       //KN - redirect to post.ejs 
-      return res.redirect('/post')
+      // JM - gonna tyr profile for now, no post route
+      return res.redirect('/profile')
     }
     res.render('signup', {
       title: 'Create Account'
     })
   }
   
-  exports.postSignup = (req, res, next) => {
+  exports.postSignUp = (req, res, next) => {
     const validationErrors = []
     if (!validator.isEmail(req.body.email)) validationErrors.push({ msg: 'Please enter a valid email address.' })
     if (!validator.isLength(req.body.password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' })
@@ -90,7 +94,9 @@ const User = require('../models/user')
             return next(err)
           }
           //KN - redirect to post.ejs 
-          res.redirect('/post')
+          //JM - want to redirect to profile, not post
+          console.log('post sign up')
+          res.redirect('/profile')
         })
       })
     })

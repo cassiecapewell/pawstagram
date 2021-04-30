@@ -7,9 +7,11 @@ const postsController = require('../controllers/posts')
 const { ensureAuth, ensureGuest } = require('../middleware/auth')
 
 //Post Routes
-// router.get("/:id", ensureAuth, postsController.getPost)
+router.get("/:id", ensureAuth, postsController.getPost)
 
-// router.post("/createPost", upload.single("file"), postsController.createPost)
+router.post("/createPost", upload.single("file"), postsController.createPost)
+
+// These need to be created in the post controller before being put here or else it all breaks -JM
 
 // router.put("/likePost/:id", postsController.likePost)
 

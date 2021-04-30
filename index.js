@@ -10,18 +10,14 @@ const flash = require('express-flash');
 const logger = require('morgan');
 const connectDB = require('./config/database');
 
+// import routes
+const mainRoutes = require('./routes/main');
+const postRoutes = require('./routes/posts');
+
 // require multer and ejs - Jeff
 const multer = require('multer');
 const ejs = require('ejs');
 const path = require('path');
-
-//init app - Jeff  i feel like we don't need this since we have it at the bottom of this file? -cc
-// const port = 3000;
-// app.listen(port, () => console.log(`Server started on port ${port}`));
-
-// import routes
-const mainRoutes = require('./routes/main');
-const postRoutes = require('./routes/posts');
 
 // Passport config
 require('./config/passport')(passport);
@@ -32,8 +28,10 @@ connectDB();
 // use ejs for views
 app.set('view engine', 'ejs');
 
+// use forms for put/delete
+app.use(methodOverride("_method"));
+
 // Leon's favorite line of code ever! -Coby
-// why isnt it finding our css? - JM  for some reason the css folder wasn't in the public folder (i put it back in) -cc
 app.use(express.static('public'));
 
 // body parsing
@@ -43,8 +41,6 @@ app.use(express.json());
 // logging
 app.use(logger('dev'));
 
-//use forms for put / delete
-app.use(methodOverride('_method'));
 
 // setup sessions - stored in mongoDB
 app.use(

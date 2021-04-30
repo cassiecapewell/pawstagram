@@ -1,16 +1,28 @@
 <%- include('header') -%>
 
 <section id="main-signup">
-<! -- we need add signup action to the form element -JM -->
-  <form class="flex signup">
-    <label>Username</label>
-    <input type="text"  id="" name=""/>
-    <label>Email Address</label>
-    <input type="email" id="" name=""/>
-    <label>Password</label>
-    <input type="password" id="" name=""/>
-    <label>Confirm Password</label>
-    <input type="password"  id="" name=""/>
+<!-- we need add signup action to the form element -JM -->
+  <form class="flex signup" action="/signup" method="POST">
+  <!-- password errors  -JM -->
+    <% if (locals.messages.errors) { %>
+          <% messages.errors.forEach( el => { %>
+          <div ><%= el.msg %></div>
+          <% }) %>    
+          <% } %>
+          <% if (locals.messages.info) { %>
+          <% messages.info.forEach( el => { %>
+          <div ><%= el.msg %></div>
+        <% }) %>    
+    <% } %>
+
+    <label for="userName">Username</label>
+    <input type="text"  id="userName" name="userName"/>
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email"/>
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"/>
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password"  id="confirmPassword" name="confirmPassword"/>
     <button type="submit">CREATE ACCOUNT</button>
   </form>
 </section>
