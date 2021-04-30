@@ -1,5 +1,19 @@
 <%- include('header') -%>
 
-
+<!-- Creating feed window and content structure. -Coby -->
+<section id="posts-window">
+  <section class="post-content">
+    <h1>Feed, yum!</h1>
+    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.yourdog.co.uk%2Fdog-care-and-advice%2Fyour-dog-training%2Fwhy-does-my-dog-prefer-the-floor-to-his-bowl%2F&psig=AOvVaw11kYvhT-O_NOj7h3kESJnc&ust=1619824481435000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCx0crKpPACFQAAAAAdAAAAABAD" alt="A dog looking at its food bowl">
+    <ul>
+      <% for(let i = 0; i < posts.length; i++) { %>
+        <li class="postItem">
+          <a href="/post/<%= posts[i]._id%>">
+          <img src="<%= posts[i].image%>"></a>
+        </li>
+      <% } %>
+    </ul>
+  </section>
+</section>
 
 <%- include('footer') -%>

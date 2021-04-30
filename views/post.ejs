@@ -1,5 +1,36 @@
 <%- include('header') -%>
+<body>
+
+    <h1>Post</h1>
+
+    <h2><%= post.title %></h2>
+    <img src="../<%= post.image %>" />
+    <!-- displays the image title and the image itself -cc -->
+    <form
+      action="/post/likePost/<%= post.id %>?_method=PUT"
+      method="POST"
+    >
+    <button class="fas fa-paw fa-sm" type="submit"></button>
+    </form>
+    <!-- add a like -->
+
+    <h3>Likes: <%= post.likes %></h3>
+    <!-- displays likes -->
+
+    <%if(post.user == user.id){ %>
+    <form
+      action="/post/deletePost/<%= post.id %>?_method=DELETE"
+      method= "POST"
+    >
+    <!-- the classes on this are bootstrap classes FYI -->
+    <button class="btn btn-primary fa fa-trash" type="submit"></button>
+    </form>
+    <%}%>
+    <!-- if the logged in user is the user that posted the image, there is a delete option -cc -->
+
+    <a href="/logout">Logout</a>
 
 
-
+</body>
 <%- include('footer') -%>
+</html>

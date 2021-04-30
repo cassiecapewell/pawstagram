@@ -1,15 +1,36 @@
 <%- include('header') -%>
 
-<button>Logout</button>
-<button>Return to Feed</button>
+<p>username: <%= user.userName %></p>
+<p>email: <%= user.email %></p>
+<a href="/logout">Logout</a>
+<!-- // shows username and pw, and option for logging out -cc -->
 
 <h3>Add a post</h3>
-<h5>Title</h5>
-<input type="text"/>
-<h5>Caption</h5>
-<input type="text"/>
-<h5>Image</h5>
-<input type="file"/>
+<form action="/post/createPost" enctype="multipart/form-data"
+method="POST">
+  <label for="title" class="form-label">Title</label>
+  <input type="text" class="form-control" id="title" name="title">
 
+  <label for="caption" class="form-label">Caption</label>
+  <textarea class="form-control" id="caption" name="caption"></textarea>
+
+  <label for="imgUpload" class="form-label">Image</label>
+  <input type="file" class="form-control" id="imageUpload" name="file">
+
+  <button type="submit" value="Upload">Submit</button>
+</form>
+<!-- all the info for adding a post -cc -->
+
+<ul>
+  <% for(let i = 0; i < posts.length; i++) { %>
+    <li>
+       <a href="/post/<%= posts[i]._id%>">
+       <img src="<%= posts[i].image%>"></a>
+    </li>
+  <% } %>
+</ul>
+<!-- shows all the users posts -cc -->
+
+<a href="/feed">Return to Feed</a>
 
 <%- include('footer') -%>

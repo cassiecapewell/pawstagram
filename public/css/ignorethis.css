@@ -12,8 +12,6 @@
   --txt-color: #2d3142;
 }
 
-
-
 /* Main Elements  */
 body {
   background-color: #F2F2F2;
@@ -112,7 +110,7 @@ button:active {
   width: 60%;
 }
 
-.signup input, .login input {
+.signup input {
   border: none;
   height: 40px;
   width: 80%;
@@ -122,7 +120,7 @@ button:active {
   caret-color: var(--accent-color)
 }
 
-.signup input:focus, .login input:focus {
+.signup input:focus {
   border: 2px solid var(--txt-color);
   outline: none;
 }
@@ -172,10 +170,17 @@ div button {
   font-weight: bold;
 }
 
+/* Wanted paw to grow and rotate slightly on mouseover. -Coby */
 .fa-paw {
   transition: transform .5s ease-in;
 }
 .fa-paw:hover {
   transform: rotate(20deg);
   transform: scale(1.5);
+}
+
+/* Centered (hopefully) the feed window. -Coby */
+#posts-window {
+  margin: auto;
+  width: 50%;
 }
