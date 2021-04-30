@@ -2,10 +2,15 @@
 
 <!-- I moved all the ejs from this file to placeholder.ejs to simplify it for testing purposes -->
 
-<p>username: <%= user.userName %></p>
-<p>email: <%= user.email %></p>
-<a href="/logout">Logout</a>
-<!-- // shows username and pw, and option for logging out -cc -->
+<!-- I'm thinking we should do this differently than Leon and separate the post creation from the profile, but we dont *have* to-->
+<body class="container">
+  <section id="main-content">
 
+    <p>username: <%= user.userName %></p>
+    <p>email: <%= user.email %></p>
+    <a href="/logout"><button>Logout</button</a>
+    <!-- // shows username and pw, and option for logging out -cc -->
+  </section>
+</body>
 
 <%- include('footer') -%>
