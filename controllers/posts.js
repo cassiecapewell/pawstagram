@@ -30,7 +30,6 @@ module.exports = {
         console.log(err)
       }
     }
-    // ill be honest, i straight up copied from Leon because redirecting to the profile page was just broken without it and i dont get why -JM
     ,
     getFeed: async (req,res)=>{
         try{
