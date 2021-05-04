@@ -1,16 +1,51 @@
 <%- include('header') -%>
 
-<!-- I moved all the ejs from this file to placeholder.ejs to simplify it for testing purposes -->
-
 <!-- I'm thinking we should do this differently than Leon and separate the post creation from the profile, but we dont *have* to-->
 <body class="container">
   <section id="main-content">
-
-    <p>username: <%= user.userName %></p>
-    <p>email: <%= user.email %></p>
-    <a href="/logout"><button>Logout</button</a>
-    <!-- // shows username and pw, and option for logging out -cc -->
+  <!-- placeholder profile picture we should let users upload a profile pic -->
+    <h3 id="userName"><%= user.userName %></h3>
+    <img id="picture" src="/uploads/profile.png" />
   </section>
 </body>
+
+<h3>Add a post</h3>
+<section id="main-signup">
+<form class="flex signup" action="/post/createPost" enctype="multipart/form-data"
+method="POST">
+  <label for="title" class="form-label">Title</label>
+  <input type="text" class="form-control" id="title" name="title">
+
+  <label for="caption" class="form-label">Caption</label>
+  <textarea class="form-control" id="caption" name="caption"></textarea>
+
+  <label for="imgUpload" class="form-label">Image</label>
+  <input type="file" class="form-control" id="imageUpload" name="file">
+
+  <button type="submit" value="Upload">Submit</button>
+</form>
+</section>
+<!-- all the info for adding a post -cc -->
+<h3>Previous Posts</h3>
+<section class="feed-container">
+    <ul class="feed-children">
+  <% for(let i = 0; i < posts.length; i++) { %>
+    <li id="profileYes">
+       <a href="/post/<%= posts[i]._id%>">
+       <img src="<%= posts[i].image%>" id="profileImg"></a>
+    </li>
+  <% } %>
+</ul>
+</section>
+<!-- shows all the users posts -cc -->
+
+    <a href="/logout"><button>Logout</button</a>
+    <a href="/feed"><button>go to feed</button</a>
+
+
+
+
+
+
 
 <%- include('footer') -%>

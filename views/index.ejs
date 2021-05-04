@@ -4,9 +4,20 @@
       <section id="main-content">
             <img src="https://images.pexels.com/photos/46024/pexels-photo-46024.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Pets">
         <div id="action-items">
-          <a href="/login"><button>SIGN IN</button></a>
-          <a href="/signup"><button>CREATE ACCOUNT</button></a>
-          <a href="/logout" class="col-3 btn btn-primary"><button>Logout</button></a>
+          <!-- this conditional logic doesnt work becasue the user isnt passed into index.ejs -->
+          <% if(typeof user === 'undefined'){ %>
+                <a href="/login"><button>LOG IN</button></a>
+                <a href="/signup"><button>CREATE ACCOUNT</button></a>
+              <% }else{ %>
+                <a href="/profile"><button>PROFILE</button></a>
+              <% } %>
+          
+              <% if(typeof user === "undefined"){ %>
+                  <a href="/logout"><button>LOG OUT</button></a>
+              <% }else{ %>
+                <a href="/logout"><button>LOG OUT</button></a>
+              <% } %>
+              
         </div>
       </section>
       

@@ -2,13 +2,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Pet's Media!</title>
+    <script src="https://kit.fontawesome.com/5057e8ccf8.js" crossorigin="anonymous"></script>
+      <!-- font awesome icons were taking forever to load and I think it's because the code is in the footer and not the head, so i moved it up here (now it's in both places..) -cc -->
+
     <link type="text/css" href="/css/style.css" rel="stylesheet"  />
   </head>
   <div class="flexheader">
   
   <!-- Made entire name/logo ahref for easier home click. -Coby -->
-  <h1 id="logo">p<a href="/"><i class="fas fa-paw fa-sm"></i></a>wstagram</h1>
+  <h1 id="logo">p<a href="/feed"><i class="fas fa-paw fa-sm header-logo"></i></a>wstagram</h1>
   
+    <% if(typeof user === "undefined"){ %>
+      <a href="/login"><button id="logo">log in</button></a>
 
-  <button id="logo">log in</button>
+    <% }else{ %>
+      <a href="/login"><button id="logo">log out</button></a>
+    <% } %>
   </div>

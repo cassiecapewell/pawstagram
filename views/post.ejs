@@ -1,37 +1,53 @@
 <%- include('header') -%>
+
 <body>
+  <div id="main-signup">
+  <section id="post" class="flex-container">
+    <h1 id="postTitle">Let's Take a Closer Look!</h1>
 
-    <h1>Post</h1>
-
-    <h2><%= post.title %></h2>
+    <h2 id="posth2" ><%= post.title %></h2>
     <!-- where will post.image be stored? -->
-    <img src="../<%= post.image %>" />
-    <!-- displays the image title and the image itself -cc -->
-    <form
+    <img src="../<%= post.image %>" class="postImg" />
+    <p id="postCaption" ><%= post.caption %></p>
+    <!-- displays the title caption and image -cc -->
+    
+    <section id="like-buttons">
+    <form class="postButton"
       action="/post/likePost/<%= post.id %>?_method=PUT"
       method="POST"
     >
-    <button class="fas fa-paw fa-sm" type="submit"></button>
+    <button id="postLikes" class="fas fa-paw fa-sm" type="submit"></button>
     </form>
     <!-- add a like -->
 
-    <h3>Likes: <%= post.likes %></h3>
+    <h3 id="postLikes" >Likes: <%= post.likes %></h3>
+    </section>
     <!-- displays likes -->
 
     <%if(post.user == user.id){ %>
-    <form
-      action="/post/deletePost/<%= post.id %>?_method=DELETE"
-      method= "POST"
-    >
-    <!-- the classes on this are bootstrap classes FYI -->
-    <button class="btn btn-primary fa fa-trash" type="submit"></button>
-    </form>
-    <%}%>
+    <section id="post-buttons">
+      <form
+        action="/post/deletePost/<%= post.id %>?_method=DELETE"
+        method= "POST"
+      >
+      <!-- the classes on this are bootstrap classes FYI -->
+      <button class="btn btn-primary fa fa-trash" type="submit"></button>
+      </form>
+    <a href="/profile"><button>Profile</button</a>
+    <a href="/feed"><button>Return to Feed</button</a>
+
+    
+    <% } else { %>
+    <section id="post-buttons">
+     <a href="/profile"><button>Profile</button</a>
+     <a href="/feed"><button>Return to Feed</button</a>
+    </section>
+     <% } %>
     <!-- if the logged in user is the user that posted the image, there is a delete option -cc -->
 
-    <a href="/logout">Logout</a>
 
-
+    </section>
+    </div>
 </body>
 <%- include('footer') -%>
-</html>
+
