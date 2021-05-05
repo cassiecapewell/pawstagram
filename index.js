@@ -20,8 +20,9 @@ const ejs = require('ejs');
 const path = require('path');
 
 // dot env
+// if (process.env.NODE_ENV !== 'production') { require('dotenv').config({path: './config/.env'}) }
 
-
+require('dotenv').config({path: './config/.env'})
 
 // Passport config
 require('./config/passport')(passport);
@@ -68,6 +69,6 @@ app.use('/', mainRoutes);
 app.use('/post', postRoutes);
 
 // server running
-app.listen(process.env.PORT || 80, () => {
+app.listen(process.env.PORT, () => {
 	console.log('Server is running, you better catch it!');
 });
