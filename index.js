@@ -22,7 +22,7 @@ const path = require('path');
 // dot env
 // if (process.env.NODE_ENV !== 'production') { require('dotenv').config({path: './config/.env'}) }
 
-require('dotenv').config({path: './config/.env'})
+// require('dotenv').config({path: './config/.env'})
 
 // Passport config
 require('./config/passport')(passport);
