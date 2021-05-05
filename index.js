@@ -21,7 +21,6 @@ const path = require('path');
 
 // dot env
 
-if (process.env.NODE_ENV !== 'production') { require('dotenv').config() }
 
 
 // Passport config
