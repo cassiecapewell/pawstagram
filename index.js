@@ -19,6 +19,9 @@ const multer = require('multer');
 const ejs = require('ejs');
 const path = require('path');
 
+// dot env
+require('dotenv').config({path: './config/.env'})
+
 // Passport config
 require('./config/passport')(passport);
 
