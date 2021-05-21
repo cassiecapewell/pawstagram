@@ -12,6 +12,10 @@ ul, h1, h2, h3 {
   padding: 0;
 }
 
+/* #toggleLogo {
+  margin-left: 5px;
+} */
+
 /* CSS Variables */
 /* accent color - pinkish, txt-color - almost black */
 /* if we want to change theme colors we can just change these and it changes them everywhere :) */
@@ -19,12 +23,28 @@ ul, h1, h2, h3 {
   --accent-color: #ffa69e;
   --accent-hover: #db8881;
   --txt-color: #2d3142;
+  --bg-color: #F2F2F2;
+
+  --foreground: var(--bg-color);
+  --background: var(--txt-color)
 }
+
+/* Adding Dark Mode Toggle */
+.darkmode {
+  --accent-color: #ffa69e;
+  --accent-hover: #db8881;
+  --bg-color: #F2F2F2;
+  --txt-color: #2d3142;
+
+  --foreground: var(--txt-color);
+  --background: var(--bg-color);
+}
+
 
 
 /* Main Elements  */
 body {
-  background-color: #F2F2F2;
+  background-color: var(--foreground);
   margin: 0;
   font-family: 'Noto Sans JP', sans-serif;
 }
@@ -35,7 +55,7 @@ h1 {
 }
 
 h1, h2, h3, h4, p {
-  color: var(--txt-color)
+  color: var(--background)
 }
 
 @media screen and (min-width: 700px) {
@@ -48,6 +68,11 @@ h1, h2, h3, h4, p {
 label {
   font-family: 'Noto Sans JP', sans;
   font-size: 0.6em;
+    color: var(--background);
+}
+
+#imageUpload {
+  color: var(--background)
 }
 
 h3 {
@@ -61,8 +86,8 @@ a, a:visited {
 }
 
 #userName {
-  color: var(--accent-color);
-  font-size:  1.2em;
+  color: var(--txt-color);
+  font-size:  0.5em;
   margin-bottom: 15px;
 }
 
@@ -201,7 +226,7 @@ button:active {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: var(--foreground);
 
 }
 
@@ -209,7 +234,7 @@ button:active {
   flex-basis: 5;
   margin-left: 2%;
   margin-right: 3%;
-  color:  var(--txt-color);
+  color:  var(--background);
 }
 
 a #logo {
@@ -422,6 +447,35 @@ div button {
 }
 
 
+.dark-mode-toggle {
+  position: absolute;
+  z-index: 100;
+  top: 1em;
+  right: 10em;
+  color: var(--background);
+  border: 2px solid currentColor;
+  padding: 4px;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+
+.dark-mode-toggle:focus {
+  color: var(--background) !important;
+  background-color: var(--foreground) !important
+}
+
+.dark-mode-toggle:hover {
+  color: var(--foreground);
+  background-color: var(--background)
+}
 
 
 

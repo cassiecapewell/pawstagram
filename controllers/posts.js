@@ -1,3 +1,5 @@
+// import cloudinary
+const cloudinary = require("../middleware/cloudinary")
 // import the Post model
 const Post = require('../models/post')
 
@@ -45,9 +47,13 @@ module.exports = {
     
     createPost: async (req, res)=>{
         try{
+            // upload image to cloudinary
+            const result = await cloudinary.uploader.upload(req.file.path);
+
             await Post.create({
                 title: req.body.title, 
-                image: '/uploads/' + req.file.filename, 
+                image: result.secure_url, 
+                cloudinaryId: result.public_id,
                 caption: req.body.caption,
                 likes: 0,
                 user: req.user.id
@@ -76,8 +82,12 @@ module.exports = {
 
     deletePost: async (req, res)=>{
         try{
-            console.log(req.params)
-            await Post.findOneAndDelete({_id:req.params.id})
+          // find post by id
+          let post = await Post.findById({_id:req.params.id })
+          // delete image from cloudinary
+          await cloudinary.uploader.destroy(post.cloudinaryId);
+          // delete post from database
+          await Post.remove({_id: req.params.id });
             console.log('Deleted Post')
             res.redirect('/profile')
         }catch(err){
